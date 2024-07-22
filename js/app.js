@@ -17,6 +17,9 @@ function agregarProducto(codigo, nombre, precio){
 
     inventario.push(producto);
     alert("Producto agregado al inventario.");
+
+    console.log("Inventario actualizado:");
+    mostrarInventario();
 }
 
 
@@ -31,7 +34,17 @@ function buscarProductoPorCodigo(codigo){
     return null;
 }
 
-let operacion = prompt("¿Que desea hacer 1)Agregar un producto al inventario o 2)Buscar un producto por codigo \n Ingrese 1 o 2 para avanzar.");
+function mostrarInventario(){
+    console.log("Inventario:");
+    for (let i = 0; i < inventario.length; i++){
+        console.log("Producto:" + (i + 1) + ":");
+        console.log("Codigo:" + inventario[i].codigo);
+        console.log("Nombre:" + inventario[i].nombre);
+        console.log("Precio:" + inventario[i].precio);
+    }
+}
+
+let operacion = prompt("¿Que desea hacer?\n1)Agregar un producto al inventario \n2)Buscar un producto por codigo \n3)Mostrar todo el inventario \n Ingrese 1, 2 o 3 para avanzar.");
 
 if(operacion === "1"){
     let codigo = prompt("Ingrese el codigo del producto:");
@@ -45,14 +58,19 @@ if(operacion === "1"){
     let productoEncontrado = buscarProductoPorCodigo(codigoBuscar);
 
     if (productoEncontrado){
-        alert("Producto encontrado: \nCodigo: "+productoEncontrado.codigo+"\nNombre: "+productoEncontrado.nombre+"\nPrecio: "+productoEncontrado.precio+"");
+        console.log("Producto encontrado:");
+        console.log("Codigo: " + productoEncontrado.codigo);
+        console.log("Nombre: " + productoEncontrado.nombre);
+        console.log("Precio: " + productoEncontrado.precio);
     } else {
         alert("Producto no encontrado en el inventario.");
     }
+} else if (operacion === "3"){
+    mostrarInventario();
 } else {
     alert("Opcion no valida. Por favor ingrese 1 o 2.")
 }
 
-
-
+console.log("Inventario completo:");
+mostrarInventario();
 
